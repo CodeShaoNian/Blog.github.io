@@ -1,37 +1,39 @@
-## Welcome to GitHub Pages
+---
+layout: page
+title: 今、情热が岚になって
+showtag:
+- ICPC模板
+---
+## 近期
 
-You can use the [editor on GitHub](https://github.com/Chunchao98/Blog.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+{% for post in site.posts limit:5 %}
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+- [{{ post.title }}]({{ post.url }}), *{{ post.date | date_to_string }}*
 
-### Markdown
+{% if post.description %}
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+  > {{ post.description }}
 
-```markdown
-Syntax highlighted code block
+{% endif %}
 
-# Header 1
-## Header 2
-### Header 3
+{% endfor %}
 
-- Bulleted
-- List
+- [更多…](/archive)
 
-1. Numbered
-2. List
+{% for tag in page.showtag %}
 
-**Bold** and _Italic_ and `Code` text
+## {{ tag }}
 
-[Link](url) and ![Image](src)
-```
+{% for post in site.tags[tag] %}
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+- [{{ post.title }}]({{ post.url }})
 
-### Jekyll Themes
+{% if post.description %}
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Chunchao98/Blog.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+  > {{ post.description }}
 
-### Support or Contact
+{% endif %}
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+{% endfor %}
+
+{% endfor %}
